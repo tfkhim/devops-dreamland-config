@@ -1,0 +1,30 @@
+# NGINX Ingress supports only one protocol per ingress object. To terminate
+# TLS at the ingress one has to create multiple ingress objects. See:
+# https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
+# Right now the GRPC protocol is not required. Therefore there is currently
+# only an ingress object for HTTP. The GRPC ingress can be added later on
+# when it is required.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-http-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: http
+    host: argocd.test
+  tls:
+  - hosts:
+    - argocd.test
+    secretName: argocd-secret
