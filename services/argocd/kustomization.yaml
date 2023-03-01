@@ -5,6 +5,7 @@ namespace: argocd
 resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.2/manifests/install.yaml
 - ingress.yaml
+- app-of-apps.yaml
 
 patches:
   # To terminate TLS at the ingress level the Argo CD API server must run with
