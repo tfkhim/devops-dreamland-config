@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-echo
+  labels:
+    app: http-echo
+spec:
+  ports:
+  - name: http
+    port: 5678
+    protocol: TCP
+  selector:
+    app: http-echo
