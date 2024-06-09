@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: demo-app
-        image: ghcr.io/tfkhim/devops-dreamland-app:0.4.0
+        image: ghcr.io/tfkhim/devops-dreamland-app:0.4.1
         ports:
         - containerPort: 8080
